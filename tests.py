@@ -27,5 +27,15 @@ inventaire = [ (fruit,nb) for nb,fruit in sorted(inventaire_inverse,reverse = Tr
 #print(inventaire)
 
 
+dico = dict()
+dico["pseudo"] = "rezoo"
+dico["mdp"] = "****"
+print(dico)
+
+#del dico["mdp"]   # " " "
+# dico.pop("mdp") #necessite de donner la clé pour supprimer
+print("Supprimé: ", dico.pop("mdp")) #renvoie la valeur supprimée !
+
+#print_bis = print #WHATTT on peut changer nom de la fonction !
 
 
