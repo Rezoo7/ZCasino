@@ -19,6 +19,11 @@ def recup_scores():
         return scores
 
 def enregristrer_score(scores):
+    """
+    :param scores:
+    :return: les scores , obetnus précedemment
+    """
+
     fichier_score = open(nom_fichier_score,"wb")
     mon_pickler = pickle.Pickler(fichier_score)
     mon_pickler.dump(scores)
@@ -26,11 +31,21 @@ def enregristrer_score(scores):
 
 
 def recup_utilisateur():
+
     """
     Va servir a retourner le nom de l'utilisateur
-    :return: nom de l'utilisateur
+    Si le nom n'est pas valide on appelle recursivement la methode
+    :return: name , nom de l'utilisateur
     """
 
+    nom = input("Saisissez votre pseudo : ")
+
+    nom = nom.capitalize()
+    if not nom.isalnum() or len(nom)<4:
+        print("Pseudo Invalide ! Doit être sans espace (lettre et/ou Nombre) et superieur à 4 caractère")
+        return recup_utilisateur()
+    else:
+        return nom
 
 
 def bonne_lettre(mot,lettre):
