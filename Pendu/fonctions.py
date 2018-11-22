@@ -21,7 +21,6 @@ def recup_scores():
 def enregristrer_score(scores):
     """
     :param scores:
-    :return: les scores , obetnus précedemment
     """
 
     fichier_score = open(nom_fichier_score,"wb")
@@ -48,23 +47,47 @@ def recup_utilisateur():
         return nom
 
 
-def bonne_lettre(mot,lettre):
-    if lettre in mot:
-        return True
+def recup_lettre():
+    """Cette fonction récupère une lettre saisie par
+        l'utilisateur. Si la chaîne récupérée n'est pas une lettre,
+        on appelle récursivement la fonction jusqu'à obtenir une lettre"""
+
+    lettre = input("Saisissez une lettre: ")
+    lettre.lower()
+
+    if not lettre.isalnum() or len(lettre) != 1:
+        print("Ce n'est pas une lettre !")
+        return recup_lettre()
     else:
-        return False
-
-def nb_mot(mot): # nombre de lettres
-    nb = 0
-    for lettre in mot:
-        nb += 1
-
-    return nb
+        return lettre
 
 
-def mot_fini(mot, decouvert):               #decouvert= nb de lettre decouvert
-    if nb_mot(mot) == decouvert:
-        return True
-    else:
-        return False
+def choisir_mot():
+    """
+    :return: le mot choisis dans la liste de mots
+    """
+
+    return choice(mots)
+
+
+def recup_mot_masque(mot_complet, lettres_trouvees):
+
+    """
+    Cette fonction renvoie le mot masque en fonction de:
+    :param mot_complet: le mot entier qui doit etre trouver
+    :param lettres_trouvees: le lettres deja trouvees
+    :return: mot_masque
+    """
+    mot_masque = ""
+
+    for lettres in mot_complet:
+        if lettres in lettres_trouvees:
+            mot_masque += lettres
+        else:
+            mot_complet += "*"
+
+    return mot_masque
+
+
+
 
